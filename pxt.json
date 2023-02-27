@@ -1,5 +1,5 @@
 {
-    "name": "wukong_全速前进或侧向行驶",
+    "name": "wukong_2D_Demo",
     "description": "",
     "dependencies": {
         "core": "*",

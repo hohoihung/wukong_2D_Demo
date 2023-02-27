@@ -1,18 +1,31 @@
+function right (speed: number) {
+    wuKong.setAllMotor(0 - speed, speed / 2)
+}
+function left (speed: number) {
+    wuKong.setAllMotor(speed / 2, 0 - speed)
+}
 input.onButtonPressed(Button.A, function () {
-    wuKong.mecanumRun(wuKong.RunList.left)
+    forward(100)
+    basic.pause(2000)
+    reverse(100)
+    basic.pause(2000)
+    wuKong.stopAllMotor()
 })
-input.onGesture(Gesture.ScreenDown, function () {
-    wuKong.mecanumRun(wuKong.RunList.stop)
-})
+function reverse (speed: number) {
+    wuKong.setAllMotor(0 - speed, 0 - speed)
+}
 input.onButtonPressed(Button.AB, function () {
-    wuKong.mecanumRun(wuKong.RunList.Front)
+    wuKong.stopAllMotor()
 })
 input.onButtonPressed(Button.B, function () {
-    wuKong.mecanumRun(wuKong.RunList.right)
+    left(100)
+    basic.pause(2000)
+    right(100)
+    basic.pause(2000)
+    wuKong.stopAllMotor()
 })
-wuKong.mecanumWheel(
-wuKong.ServoList.S1,
-wuKong.ServoList.S2,
-wuKong.ServoList.S3,
-wuKong.ServoList.S4
-)
+function forward (speed: number) {
+    wuKong.setAllMotor(speed, speed)
+}
+wuKong.setLightMode(wuKong.LightMode.BREATH)
+basic.showIcon(IconNames.Happy)
