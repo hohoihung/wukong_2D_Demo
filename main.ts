@@ -1,12 +1,16 @@
 radio.onReceivedNumber(function (receivedNumber) {
     if (receivedNumber == 10) {
         reverse(40)
+        serial.writeValue("key A", receivedNumber)
     } else if (receivedNumber == 11) {
         forward(40)
+        serial.writeValue("key B", receivedNumber)
     } else if (receivedNumber == 12) {
         turnLeft(80)
+        serial.writeValue("key C", receivedNumber)
     } else if (receivedNumber == 13) {
-        turnRight(80)
+        stop()
+        serial.writeValue("key D", receivedNumber)
     } else if (receivedNumber == 14) {
         stop()
         serial.writeValue("key E", receivedNumber)
@@ -69,7 +73,6 @@ basic.forever(function () {
     serial.writeValue("lineLeft", pins.digitalReadPin(DigitalPin.P15))
     serial.writeValue("obstacleRight", pins.digitalReadPin(DigitalPin.P13))
     serial.writeValue("obstacleLeft", pins.digitalReadPin(DigitalPin.P12))
-    basic.pause(5000)
 })
 basic.forever(function () {
     if (inMotion == 1) {
