@@ -66,6 +66,7 @@ basic.forever(function () {
         spinLeft(50)
     }
     if (pins.digitalReadPin(DigitalPin.P13) != 0 && pins.digitalReadPin(DigitalPin.P12) == 0) {
+        reverse(50)
         spinRight(50)
     }
 })
