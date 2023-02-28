@@ -20,9 +20,9 @@ radio.onReceivedNumber(function (receivedNumber) {
     }
 })
 input.onButtonPressed(Button.A, function () {
-    forward(100)
+    forward(50)
     basic.pause(2000)
-    reverse(100)
+    reverse(50)
     basic.pause(2000)
     wuKong.stopAllMotor()
 })
@@ -36,9 +36,9 @@ input.onButtonPressed(Button.AB, function () {
     wuKong.stopAllMotor()
 })
 input.onButtonPressed(Button.B, function () {
-    spinLeft(100)
+    spinLeft(50)
     basic.pause(2000)
-    spinRight(100)
+    spinRight(50)
     basic.pause(2000)
     wuKong.stopAllMotor()
 })
