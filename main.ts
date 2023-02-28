@@ -21,7 +21,7 @@ input.onButtonPressed(Button.A, function () {
     wuKong.stopAllMotor()
 })
 function spinLeft (speed: number) {
-    wuKong.setAllMotor(speed / 2, 0 - speed)
+    wuKong.setAllMotor(0, 0 - speed)
 }
 function reverse (speed: number) {
     wuKong.setAllMotor(0 - speed, 0 - speed)
@@ -37,11 +37,35 @@ input.onButtonPressed(Button.B, function () {
     wuKong.stopAllMotor()
 })
 function spinRight (speed: number) {
-    wuKong.setAllMotor(0 - speed, speed / 2)
+    wuKong.setAllMotor(0 - speed, 0)
 }
 function forward (speed: number) {
     wuKong.setAllMotor(speed, speed)
 }
 wuKong.setLightMode(wuKong.LightMode.BREATH)
 radio.setGroup(8)
+pins.setPull(DigitalPin.P15, PinPullMode.PullUp)
+pins.setPull(DigitalPin.P14, PinPullMode.PullUp)
+pins.setPull(DigitalPin.P13, PinPullMode.PullUp)
+pins.setPull(DigitalPin.P12, PinPullMode.PullUp)
 basic.showIcon(IconNames.Happy)
+basic.forever(function () {
+    serial.writeValue("lineRight", pins.digitalReadPin(DigitalPin.P14))
+    serial.writeValue("lineLeft", pins.digitalReadPin(DigitalPin.P15))
+    serial.writeValue("obstacleRight", pins.digitalReadPin(DigitalPin.P13))
+    serial.writeValue("obstacleLeft", pins.digitalReadPin(DigitalPin.P12))
+    basic.pause(1000)
+})
+basic.forever(function () {
+    if (0 == pins.digitalReadPin(DigitalPin.P13)) {
+        spinLeft(50)
+        basic.pause(1000)
+        forward(50)
+    }
+    if (0 == pins.digitalReadPin(DigitalPin.P12)) {
+        spinRight(50)
+        basic.pause(1000)
+        forward(50)
+        basic.pause(500)
+    }
+})
