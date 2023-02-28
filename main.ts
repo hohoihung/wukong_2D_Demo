@@ -4,27 +4,29 @@ radio.onReceivedNumber(function (receivedNumber) {
     } else if (receivedNumber == 11) {
         forward(40)
     } else if (receivedNumber == 12) {
-        wuKong.setAllMotor(10, 40)
+        turnLeft(80)
     } else if (receivedNumber == 13) {
-        wuKong.setAllMotor(40, 10)
+        turnRight(80)
     } else if (receivedNumber == 14) {
         wuKong.stopAllMotor()
     } else if (receivedNumber == 15) {
     	
     }
 })
+function turnLeft (speed: number) {
+    wuKong.setAllMotor(speed / 3, speed)
+}
 input.onButtonPressed(Button.A, function () {
-    reverse(40)
-    basic.pause(2000)
     forward(40)
-    basic.pause(2000)
-    wuKong.stopAllMotor()
 })
 function spinLeft (speed: number) {
     wuKong.setAllMotor(0, 0 - speed)
 }
 function reverse (speed: number) {
     wuKong.setAllMotor(speed, speed)
+}
+function turnRight (speed: number) {
+    wuKong.setAllMotor(speed, speed / 3)
 }
 input.onButtonPressed(Button.AB, function () {
     wuKong.stopAllMotor()
@@ -54,15 +56,16 @@ basic.forever(function () {
     serial.writeValue("lineLeft", pins.digitalReadPin(DigitalPin.P15))
     serial.writeValue("obstacleRight", pins.digitalReadPin(DigitalPin.P13))
     serial.writeValue("obstacleLeft", pins.digitalReadPin(DigitalPin.P12))
-    basic.pause(1000)
+    basic.pause(5000)
 })
 basic.forever(function () {
-    if (0 == pins.digitalReadPin(DigitalPin.P13)) {
-        spinLeft(50)
-        forward(40)
-    }
-    if (0 == pins.digitalReadPin(DigitalPin.P12)) {
+    if (pins.digitalReadPin(DigitalPin.P12) == 0 && pins.digitalReadPin(DigitalPin.P13) == 0) {
         spinRight(50)
-        forward(40)
+    }
+    if (pins.digitalReadPin(DigitalPin.P13) == 0 && pins.digitalReadPin(DigitalPin.P12) != 0) {
+        spinLeft(50)
+    }
+    if (pins.digitalReadPin(DigitalPin.P13) != 0 && pins.digitalReadPin(DigitalPin.P12) == 0) {
+        spinRight(50)
     }
 })
