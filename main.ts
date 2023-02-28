@@ -1,26 +1,24 @@
-function right (speed: number) {
-    wuKong.setAllMotor(0 - speed, speed / 2)
-}
 radio.onReceivedNumber(function (receivedNumber) {
     if (receivedNumber == 10) {
         forward(100)
     } else if (receivedNumber == 11) {
         reverse(100)
     } else if (receivedNumber == 12) {
-        left(100)
+        spinLeft(100)
     } else if (receivedNumber == 13) {
-        right(100)
+        spinRight(100)
     } else if (receivedNumber == 14) {
-        left(50)
+        spinLeft(50)
+        basic.pause(2000)
+        wuKong.setAllMotor(0, -20)
     } else if (receivedNumber == 15) {
-        right(50)
+        spinRight(50)
+        basic.pause(2000)
+        wuKong.setAllMotor(-20, 0)
     } else {
         wuKong.stopAllMotor()
     }
 })
-function left (speed: number) {
-    wuKong.setAllMotor(speed / 2, 0 - speed)
-}
 input.onButtonPressed(Button.A, function () {
     forward(100)
     basic.pause(2000)
@@ -28,6 +26,9 @@ input.onButtonPressed(Button.A, function () {
     basic.pause(2000)
     wuKong.stopAllMotor()
 })
+function spinLeft (speed: number) {
+    wuKong.setAllMotor(speed / 2, 0 - speed)
+}
 function reverse (speed: number) {
     wuKong.setAllMotor(0 - speed, 0 - speed)
 }
@@ -35,12 +36,15 @@ input.onButtonPressed(Button.AB, function () {
     wuKong.stopAllMotor()
 })
 input.onButtonPressed(Button.B, function () {
-    left(100)
+    spinLeft(100)
     basic.pause(2000)
-    right(100)
+    spinRight(100)
     basic.pause(2000)
     wuKong.stopAllMotor()
 })
+function spinRight (speed: number) {
+    wuKong.setAllMotor(0 - speed, speed / 2)
+}
 function forward (speed: number) {
     wuKong.setAllMotor(speed, speed)
 }
