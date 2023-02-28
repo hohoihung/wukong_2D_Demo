@@ -1,16 +1,12 @@
 radio.onReceivedNumber(function (receivedNumber) {
     if (receivedNumber == 10) {
-        forward(100)
+        forward(40)
     } else if (receivedNumber == 11) {
-        reverse(100)
+        reverse(40)
     } else if (receivedNumber == 12) {
-        spinLeft(50)
-        basic.pause(2000)
-        wuKong.setAllMotor(0, -20)
+        wuKong.setAllMotor(0, 40)
     } else if (receivedNumber == 13) {
-        spinRight(50)
-        basic.pause(2000)
-        wuKong.setAllMotor(-20, 0)
+        wuKong.setAllMotor(40, 0)
     } else if (receivedNumber == 14) {
         wuKong.stopAllMotor()
     } else if (receivedNumber == 15) {
@@ -18,9 +14,9 @@ radio.onReceivedNumber(function (receivedNumber) {
     }
 })
 input.onButtonPressed(Button.A, function () {
-    forward(50)
+    forward(40)
     basic.pause(2000)
-    reverse(50)
+    reverse(40)
     basic.pause(2000)
     wuKong.stopAllMotor()
 })
