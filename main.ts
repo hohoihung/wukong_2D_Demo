@@ -34,7 +34,7 @@ function spinLeft (speed: number) {
     inMotion = 1
 }
 function reverse (speed: number) {
-    wuKong.setAllMotor(speed, speed)
+    wuKong.setAllMotor(0 - speed, 0 - speed)
     inMotion = 1
 }
 function turnRight (speed: number) {
@@ -45,8 +45,6 @@ input.onButtonPressed(Button.AB, function () {
     stop()
 })
 input.onButtonPressed(Button.B, function () {
-    spinLeft(50)
-    basic.pause(2000)
     spinRight(50)
     basic.pause(2000)
     stop()
@@ -56,7 +54,7 @@ function spinRight (speed: number) {
     inMotion = 1
 }
 function forward (speed: number) {
-    wuKong.setAllMotor(0 - speed, 0 - speed)
+    wuKong.setAllMotor(speed, speed)
     inMotion = 1
 }
 let inMotion = 0
