@@ -4,19 +4,17 @@ radio.onReceivedNumber(function (receivedNumber) {
     } else if (receivedNumber == 11) {
         reverse(100)
     } else if (receivedNumber == 12) {
-        spinLeft(100)
-    } else if (receivedNumber == 13) {
-        spinRight(100)
-    } else if (receivedNumber == 14) {
         spinLeft(50)
         basic.pause(2000)
         wuKong.setAllMotor(0, -20)
-    } else if (receivedNumber == 15) {
+    } else if (receivedNumber == 13) {
         spinRight(50)
         basic.pause(2000)
         wuKong.setAllMotor(-20, 0)
-    } else {
+    } else if (receivedNumber == 14) {
         wuKong.stopAllMotor()
+    } else if (receivedNumber == 15) {
+    	
     }
 })
 input.onButtonPressed(Button.A, function () {
