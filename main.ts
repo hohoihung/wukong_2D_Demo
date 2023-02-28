@@ -9,12 +9,13 @@ radio.onReceivedNumber(function (receivedNumber) {
         turnRight(80)
     } else if (receivedNumber == 14) {
         stop()
+        serial.writeValue("key E", receivedNumber)
     } else if (receivedNumber == 15) {
     	
     }
 })
 function turnLeft (speed: number) {
-    wuKong.setAllMotor(speed / 3, speed)
+    wuKong.setAllMotor(30, 40)
     inMotion = 1
 }
 function stop () {
@@ -33,7 +34,7 @@ function reverse (speed: number) {
     inMotion = 1
 }
 function turnRight (speed: number) {
-    wuKong.setAllMotor(speed, speed / 3)
+    wuKong.setAllMotor(40, 30)
     inMotion = 1
 }
 input.onButtonPressed(Button.AB, function () {
@@ -73,8 +74,8 @@ basic.forever(function () {
 basic.forever(function () {
     if (inMotion == 1) {
         if (pins.digitalReadPin(DigitalPin.P12) == 0 && pins.digitalReadPin(DigitalPin.P13) == 0) {
+            reverse(50)
             spinRight(50)
-            basic.pause(500)
             forward(40)
         }
         if (pins.digitalReadPin(DigitalPin.P13) == 0 && pins.digitalReadPin(DigitalPin.P12) != 0) {
